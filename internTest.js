@@ -24,7 +24,6 @@ firstQuestion([1,2,3,4,5,6],7)
 firstQuestion([1,2,3,4,5],5)
 firstQuestion([1,2,3,4,5],4) 
 */
-
 /*****Second Question ***************************/ 
 const secondQuestion = (firstS,secondS) => {
         /* ถ้า size ไม่เท่ายังไงก็ Not equal */
@@ -37,8 +36,7 @@ const secondQuestion = (firstS,secondS) => {
         let temp1 = firstS.toLowerCase(),
         temp2 = secondS.toLowerCase(),
         tempArray1 = [],
-        tempArray2 = [],
-        check = false
+        tempArray2 = []
 
         console.log(temp1)
         console.log(temp2)
@@ -55,7 +53,7 @@ const secondQuestion = (firstS,secondS) => {
                     tempArray2[j] = ''
                     break
                 }
-                else if( j === (tempArray1.length - 1) && !check){
+                else if( j === (tempArray1.length - 1)){
                     console.log('Not same')
                     console.log('-------------------')
                     return false
@@ -150,52 +148,38 @@ thirdQuestion([1, 4, 6, 9, 10, 14, 16, 17])
 
 /*****Fouth Question ***************************/ 
 const fourthQuestion = () => {
-    let check = true
-    while(check){
-        var totalFloor = prompt('Enter Floor')
-        if( isNaN(totalFloor) || totalFloor.trim().length === 0){
-            console.log('Please enter a number...')
-        }
-        else{
-            totalFloor = parseInt(totalFloor)
-            check = false
-        }
+    let totalFloor = prompt('Enter floor')
+    while( isNaN(totalFloor) || totalFloor.trim().length === 0 ){
+        alert('Please enter a number...')
+        totalFloor = prompt('Enter floor')
     }
+    totalFloor = parseInt(totalFloor)
     /* หาขนาดความยาวของ * ในแต่ละชั้น */
-    let floorLength = totalFloor + totalFloor - 1,
-    /* เก็บตำแหน่งของชั้นปัจจุบันไว้ใช้ในการเช็คระยะที่ต้องเว้นก่อนพิมพ์ค่า * โดยให้เริ่มที่ 0 */
-    currentFloor = 0
-    /* เริ่มต้น loop ที่ชั้นบนสุด */
-    for(let i = totalFloor;i >= 1; i--){
+    let floorLength = totalFloor + totalFloor - 1
+
+    for(let i = 0;i < totalFloor; i++){
         let temp = ''
         for(let j = 0; j < floorLength; j++){
-            if( (i === totalFloor) || (j >= currentFloor && j < (floorLength - currentFloor)) ){
+            if( j >= i && j < (floorLength - i) ){
                 temp+='*'
             }
             else{
                 temp+=' '
             }
         }
-        currentFloor += 1
         console.log(temp)
     }
 }
-
-/* fourthQuestion() */
+fourthQuestion()
 
 /*****Fifth Question ***************************/ 
 const fifthQuestion = () => {
-    let check = true
-    while(check){
-        var totalFloor = prompt('Enter Floor')
-        if( isNaN(totalFloor) || totalFloor.trim().length === 0){
-            console.log('Please enter a number...')
-        }
-        else{
-            totalFloor = parseInt(totalFloor)
-            check = false
-        }
+    let totalFloor = prompt('Enter floor')
+    while( isNaN(totalFloor) || totalFloor.trim().length === 0 ){
+        alert('Please enter a number...')
+        totalFloor = prompt('Enter floor')
     }
+    totalFloor = parseInt(totalFloor)
     let floorLength = totalFloor + totalFloor - 1,
     mid = Math.ceil(floorLength / 2), /* หาจุดกลาง */
     value = 0,
@@ -238,26 +222,23 @@ const fifthQuestion = () => {
     }
 }
 /* 
-fifthQuestion()
+fifthQuestion() 
 */
+
 
 /*****Sixth Question ***************************/ 
 /* เรียงมากไปน้อย */
 const sixthQuestion = () => {
     let totalInput = []
     for(let i = 0;i<10;i++){
-        let check = true
-        while(check){
-            let input = prompt('Enter integer')
-            if( isNaN(input) || input.trim().length === 0){
-                console.log('Please enter a number...')
-            }
-            else{
-                totalInput.push( parseInt(input))
-                check = false
-            }
+        let input = prompt('Enter a number')
+        while( isNaN(input) || input.trim().length === 0 ){
+            alert('Please enter a number...')
+            input = prompt('Enter a number')
         }
+        totalInput.push( parseInt(input))
     }
+
     for(let i =0;i<10;i++){
         for(let j = i+1;j<10;j++){
             if(totalInput[j] > totalInput[i]){
@@ -269,9 +250,9 @@ const sixthQuestion = () => {
     }
     console.log(totalInput)
 }
-/* 
-sixthQuestion() 
-*/
+
+/* sixthQuestion()  */
+
 
 /*****Seventh Question ***************************/ 
 /* 
@@ -279,17 +260,13 @@ sixthQuestion()
  1 minute = 60 seconds
 */
 const seventhQuestion = () => {
-    let check = true
-    while(check){
-        var second = prompt('Enter total second')
-        if( isNaN(second) || second.trim().length === 0){
-            console.log('Please enter a number...')
-        }
-        else{
-            second = parseInt(second)
-            check = false
-        }
+    let second = prompt('Enter total second')
+    while( isNaN(second) || second.trim().length === 0 ){
+        alert('Please enter a number...')
+        second = prompt('Enter total second')
     }
+    second = parseInt(second)
+
     /* หารแบบปัดเศษลงเก็บเป็นชั่วโมง */
     let hours = Math.floor(second / 3600)
     if(hours < 10){hours = `0${hours}`}
@@ -312,7 +289,10 @@ const eigthQuestion = () => {
     let checkPrice = true
     while(checkPrice){
         var itemPrice = prompt('Please enter your item price..')
-        if( parseInt(itemPrice) > 1000 || isNaN(itemPrice) || itemPrice.trim().length === 0){
+        if( isNaN(itemPrice) || itemPrice.trim().length === 0){
+            alert('Please enter a number')
+        }
+        else if(itemPrice > 1000){
             alert('Item price must below 1,000')
         }
         else{
@@ -320,6 +300,7 @@ const eigthQuestion = () => {
             checkPrice = false
         }
     }
+
     let returnMoney = 1000 - itemPrice
     let fiveHundred = Math.floor(returnMoney / 500)
     let oneHundred = Math.floor( (returnMoney % 500) / 100 )
@@ -387,17 +368,12 @@ ninthQuestionUseBuiltIn('Welcome to clicknext')
 
 /*****Tenth Question ***************************/ 
 const tenthQuestion = () => {
-    let check = true
-    while(check){
-        var totalFloor = prompt('Enter Floor')
-        if( isNaN(totalFloor) || totalFloor.trim().length === 0){
-            console.log('Please enter a number...')
-        }
-        else{
-            totalFloor = parseInt(totalFloor)
-            check = false
-        }
+    let totalFloor = prompt('Enter floor')
+    while( isNaN(totalFloor) || totalFloor.trim().length === 0 ){
+        alert('Please enter a number...')
+        totalFloor = prompt('Enter floor')
     }
+    totalFloor = parseInt(totalFloor)
     let floorLength = totalFloor + totalFloor - 1,
     mid = Math.ceil(floorLength / 2), /* หาจุดกลาง */
     temp = ''
@@ -422,18 +398,14 @@ const tenthQuestion = () => {
 const eleventhQuestion = ()=>{
     let totalInput = []
     for(let i = 0;i<10;i++){
-        let check = true
-        while(check){
-            let input = prompt('Enter integer')
-            if( isNaN(input) || input.trim().length === 0){
-                console.log('Please enter a number...')
-            }
-            else{
-                totalInput.push( parseInt(input))
-                check = false
-            }
+        let input = prompt('Enter a number')
+        while( isNaN(input) || input.trim().length === 0 ){
+            alert('Please enter a number...')
+            input = prompt('Enter a number')
         }
+        totalInput.push( parseInt(input))
     }
+
     for(let i =0;i<10;i++){
         for(let j = i+1;j<10;j++){
             if(totalInput[j] < totalInput[i]){
